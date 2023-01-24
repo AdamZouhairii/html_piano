@@ -1,8 +1,8 @@
-const pianoKeys = document.querySelectorAll(".piano-keys .key"),
-volumeSlider = document.querySelector(".volume-slider input"),
-keysCheckbox = document.querySelector(".keys-checkbox input");
+const touchepiano = document.querySelectorAll(".piano-keys .key"),
+volume = document.querySelector(".volume-slider input"),
+affichetouche = document.querySelector(".keys-checkbox input");
 
-let allKeys = [],
+let toutlestouche = [],
 audio = new Audio(`note/a.wav`);  // par défaut, audio est "a" note
 
 const JoueNote = (key) => {
@@ -16,8 +16,8 @@ const JoueNote = (key) => {
     }, 150);
 }
 
-pianoKeys.forEach(key => {
-    allKeys.push(key.dataset.key); // ajouter la valeur de la clé au tableau allKeys
+touchepiano.forEach(key => {
+    toutlestouche.push(key.dataset.key); // ajouter la valeur de la clé au tableau toutlestouche
      // appeler la fonction JoueNote en passant la valeur de la clé  comme argument
     key.addEventListener("click", () => JoueNote(key.dataset.key));
 });
@@ -28,14 +28,14 @@ const handleVolume = (e) => {
 
 const showHideKeys = () => {
     // masquer la classe de chaque clé sur la case à cocher
-    pianoKeys.forEach(key => key.classList.toggle("hide"));
+    touchepiano.forEach(key => key.classList.toggle("hide"));
 }
 
 const pressedKey = (e) => {
-    // si la touche enfoncée est dans le tableau allKeys, n'appelle que la fonction JoueNote
-    if(allKeys.includes(e.key)) JoueNote(e.key);
+    // si la touche enfoncée est dans le tableau toutlestouche, n'appelle que la fonction JoueNote
+    if(toutlestouche.includes(e.key)) JoueNote(e.key);
 }
 
-keysCheckbox.addEventListener("click", showHideKeys);
-volumeSlider.addEventListener("input", handleVolume);
+affichetouche.addEventListener("click", showHideKeys);
+volume.addEventListener("input", handleVolume);
 document.addEventListener("keydown", pressedKey);
